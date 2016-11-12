@@ -76,6 +76,27 @@ public class LootGenerator {
 	}
 	
 	
+	public static Armor generateBaseItem(TreasureClass t, List<Armor> armor, List<TreasureClass> classes){
+		String name = t.getRandomItem();
+		Iterator<Armor> iter = armor.iterator();
+		Armor cur;
+		while(iter.hasNext()){
+			cur = iter.next();
+			if(cur.getName().equals(name)){
+				return cur;
+			}
+		}
+		Iterator<TreasureClass> iter2 = classes.iterator();
+		TreasureClass cur2;
+		while(iter2.hasNext()){
+			cur2 = iter2.next();
+			if(cur2.getName().equals(name)){
+				return generateBaseItem(cur2, armor, classes);
+			}
+		}
+		return null;
+	}
+	
 	
 	public static void main(String[] argc) throws FileNotFoundException  {
 		File monster = new File("src/data/large/monstats.txt");
