@@ -22,6 +22,4 @@ public class TreasureClass {
 		Random rand = new Random();
 		return items[rand.nextInt(3)];
 	}
-	
-	
 }

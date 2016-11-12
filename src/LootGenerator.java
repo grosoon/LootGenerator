@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class LootGenerator {
@@ -43,6 +45,45 @@ public class LootGenerator {
 		}
 		in.close();
 		return ret;
+	}
+	
+	public static List<Armor> getArmors(File file) throws FileNotFoundException{
+		Scanner in = new Scanner(file);
+		List<Armor> ret = new ArrayList<Armor>();
+		while(in.hasNext()){
+			ret.add(new Armor(in.nextLine()));
+		}
+		in.close();
+		return ret;
+	}
+	
+	public static Monster pickMonster(List<Monster> monsters){
+		Random rand = new Random();
+		return monsters.get(rand.nextInt(monsters.size()));
+	}
+	
+	public static TreasureClass fetchTreasureClass(Monster m, List<TreasureClass> classes){
+		String name =  m.getTreasureClass();
+		Iterator<TreasureClass> iter = classes.iterator();
+		TreasureClass cur;
+		while(iter.hasNext()){
+			cur = iter.next();
+			if(cur.getName().equals(name)){
+				return cur;
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	public static void main(String[] argc) throws FileNotFoundException  {
+		File monster = new File("src/data/large/monstats.txt");
+		List<Monster> list = getMonsters(monster);
+		Monster m1 = list.get(0);
+		System.out.println(m1.getName());
+		System.out.println(m1.getTreasureClass());
+		
 	}
 	
 

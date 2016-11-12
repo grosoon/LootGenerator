@@ -4,7 +4,8 @@ public class Monster {
 	private String treasureClass;
 	private String type;
 	private int level;
-	
+
+
 	public Monster(String s){	
 		String[] inputs = s.split("\t");
 		name = inputs[0];
@@ -12,6 +13,7 @@ public class Monster {
 		level = Integer.parseInt(inputs[2]);
 		treasureClass = inputs[3];
 	}
+
 	
 	public String getName(){
 		return name;
@@ -21,3 +23,4 @@ public class Monster {
 		return treasureClass;
 	}
 }
+
